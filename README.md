@@ -12,7 +12,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run packagr` to pack the project. The build artifacts will be stored in the `dist/` directory. Copy the folder `src/app/lib/assets` inside `/dist/app/lib/` and then run `npm pack` this will create a tgz file `angular-project-utils-[~version*~].tgz` inside a `dist/` folder.
+
+## Install
+
+To install the lib in a project run `npm install [~path to tgz file~]/angular-project-utils-[~version*~].tgz && npm start`.
 
 ## Running unit tests
 
