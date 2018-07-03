@@ -1,0 +1,7 @@
+<clr-alert [clrAlertType]="alertMessage.alertType" *ngIf="alertMessage.ativo" [clrAlertClosable]="alertMessage.closeable">
+    <div class="alert-item">
+        <span class="alert-text">
+            {{alertMessage.msg}}
+        </span>
+    </div>
+</clr-alert>
