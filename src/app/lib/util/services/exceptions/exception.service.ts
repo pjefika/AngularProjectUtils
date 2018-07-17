@@ -71,7 +71,7 @@ export class ExceptionService {
                 case 500:
                     er = {
                         tError: "Ops, Aconteceu algo. Cod.30",
-                        mError: ""
+                        mError: error.message
                     }
                     break;
                 case 503:
