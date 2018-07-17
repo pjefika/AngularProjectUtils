@@ -17,6 +17,7 @@ Run `npm run packagr` to pack the project. The build artifacts will be stored in
 ## Install
 
 To install the lib in a project run `npm install [~path to tgz file~]/angular-project-utils-[~version*~].tgz && npm start`.
+Or use npm repository https://www.npmjs.com/package/angular-project-utils
 
 ## Running unit tests
 
