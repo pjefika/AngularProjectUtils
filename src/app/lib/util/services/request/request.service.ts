@@ -11,11 +11,7 @@ import { Environment } from '../../../viewmodel/request/environment';
 @Injectable()
 export class RequestService extends LinkService {
 
-    public httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
-    };
+    public httpOptions;
 
     constructor(public httpClient: HttpClient,
         public environment: Environment) {
@@ -24,6 +20,15 @@ export class RequestService extends LinkService {
     }
 
     public request(infoResquest: InfoRequest) {
+        let headers = new HttpHeaders({})
+        headers = headers.set("Content-Type", "application/json");
+        if (infoResquest.headeroptions) {
+            headers = headers.set("Authorization", infoResquest.headeroptions);
+        }
+        console.log(headers);
+        this.httpOptions = {
+            headers: headers
+        }
         switch (infoResquest.rqst) {
             case "POST":
                 return this.post(infoResquest);
@@ -62,5 +67,7 @@ export class RequestService extends LinkService {
     private setEnvironment(environment: Environment) {
         this.environment = environment;
     }
+
+
 
 }

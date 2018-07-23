@@ -1,6 +1,6 @@
 {
-	"name": "angular-project-utils",
-	"version": "0.0.1",
+	"name": "ng-project-utils",
+	"version": "0.1.8",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",

@@ -5,4 +5,5 @@ export class InfoRequest {
     path: string; // Caminho para o comando.
     timeout: number; // Tempo para quebrar o comando.
     isotherurl?: boolean = false;
+    headeroptions?: string;
 }

@@ -14,17 +14,26 @@ export class ExceptionService {
 
     public handleErrorKing(error: any): Promise<any> {
         let er: ExceptionMessage;
+        if (!navigator.onLine) {
+            er = {
+                tError: "Sem Conexão. Cod.20",
+                mError: "Sem conexão com a internet, por favor verifique sua rede e tente novamente."
+            }
+            console.log(er);
+            return Promise.reject(er);
+        }
         if (error.message === "Timeout has occurred") {
             er = {
                 tError: "Tempo Excedido. Cod.10",
                 mError: "Tempo de busca excedido, por favor realize a busca novamente. "
             }
+            console.log(er);
             return Promise.reject(er);
         }
         if (error.status === 0) {
             er = {
-                tError: "Sem Conexão. Cod.20",
-                mError: "Sem conexão com a internet, por favor verifique sua rede e tente novamente."
+                tError: "Servidor Cod.20",
+                mError: "Houve um problema de conexão com nossos servidores por favor aguarde um momento e tente novamente."
             }
             console.log(er);
             return Promise.reject(er);
@@ -65,8 +74,7 @@ export class ExceptionService {
             console.log(er);
             return Promise.reject(er);
         }
-        if (error.status >= 500) {
-            console.log(error);
+        if (error.status >= 500) {            
             switch (error.status) {
                 case 500:
                     er = {
@@ -87,6 +95,7 @@ export class ExceptionService {
                     }
                     break;
             }
+            console.log(er);
             return Promise.reject(er);
         }
     }
