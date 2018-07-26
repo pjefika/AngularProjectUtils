@@ -15,6 +15,12 @@ export class ToastyComponent implements OnInit {
 
     public ngOnInit() { }
 
+    /** 
+     * addToasty Doc 
+     * themes - default / info / success / wait / error / warning
+     * showclose - Mostra/Esconde botão de fechar
+     * timeout - Quanto tempo o toasty ira ficar ativo
+    */
     public addToasty(titulo: string, mensagem: string, showclose: boolean, theme: string, timeout: number) {
         let toastOptions: ToastOptions = {
             title: titulo,
