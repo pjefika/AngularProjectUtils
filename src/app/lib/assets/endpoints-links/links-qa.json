@@ -23,6 +23,10 @@
         {
             "nome": "acs",
             "url": "http://10.200.35.67:80/acs/"
+        },
+        {
+            "nome": "notification",
+            "url": "http://10.40.196.171:8085/"
         }
     ]
 }
