@@ -34,12 +34,12 @@ export class RequestService extends LinkService {
                 return this.post(infoResquest);
             case "GET":
                 return this.get(infoResquest);
+            case "DELETE":
+                return this.delete(infoResquest);
         }
     }
 
     private get(infoResquest: InfoRequest): Promise<any> {
-        // console.log("Fazendo GET");
-        // console.log(infoResquest);
         return this.httpClient
             .get(super.moutUrl(infoResquest), this.httpOptions)
             .timeout(infoResquest.timeout)
@@ -51,11 +51,20 @@ export class RequestService extends LinkService {
     }
 
     private post(infoResquest: InfoRequest): Promise<any> {
-        // console.log("Fazendo POST");
-        // console.log(infoResquest);
         console.log(this.moutUrl(infoResquest));
         return this.httpClient
             .post(this.moutUrl(infoResquest), JSON.stringify(infoResquest._data), this.httpOptions)
+            .timeout(infoResquest.timeout)
+            .toPromise()
+            .then(resposta => {
+                return resposta
+            })
+            .catch(super.handleError);
+    }
+
+    private delete(infoResquest: InfoRequest): Promise<any> {
+        return this.httpClient
+            .delete(super.moutUrl(infoResquest), this.httpOptions)
             .timeout(infoResquest.timeout)
             .toPromise()
             .then(resposta => {
