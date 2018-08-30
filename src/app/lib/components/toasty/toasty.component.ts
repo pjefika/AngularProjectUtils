@@ -6,7 +6,7 @@ import { ToastyService, ToastyConfig, ToastOptions } from "ng2-toasty";
     templateUrl: "toasty.component.html"
 })
 
-export class ToastyComponent implements OnInit {
+export class ToastyComponent implements OnInit {   
 
     constructor(private toastyService: ToastyService,
         private toastyConfig: ToastyConfig) {
@@ -32,8 +32,8 @@ export class ToastyComponent implements OnInit {
         this.showtoasty(toastOptions);
     }
 
-
     private showtoasty(toastOptions: ToastOptions) {
+        console.log(toastOptions);
         switch (toastOptions.theme) {
             case "default":
                 this.toastyService.default(toastOptions);

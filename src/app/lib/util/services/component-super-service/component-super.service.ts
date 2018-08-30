@@ -9,7 +9,7 @@ export class ComponentSuperService extends ExceptionService {
         super();
     }
 
-    public showToasty(titulo: string, mensagem: string, showclose: boolean, theme: string, timeout: number) {
+    public showToasty(titulo: string, mensagem: string, showclose: boolean, theme: string, timeout: number) {        
         this.toastyComponent.addToasty(titulo, mensagem, showclose, theme, timeout);
     }
 

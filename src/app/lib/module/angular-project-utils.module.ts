@@ -27,7 +27,8 @@ import { ExceptionService } from '../util/services/exceptions/exception.service'
         ClarityModule
     ],
     exports: [
-        AngularProjectUtilsComponent
+        AngularProjectUtilsComponent,
+        ToastyModule
     ],
     providers: [
         ClipboardService,

@@ -6,30 +6,28 @@ import { InfoRequest } from '../../../viewmodel/request/inforequest';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/timeout'
 import 'rxjs/add/operator/toPromise';
-import { Environment } from '../../../viewmodel/request/environment';
 
 @Injectable()
 export class RequestService extends LinkService {
 
     public httpOptions;
 
-    constructor(public httpClient: HttpClient,
-        public environment: Environment) {
+    constructor(public httpClient: HttpClient) {
         super();
-        this.setEnvironment(environment);
     }
 
-    public request(infoResquest: InfoRequest) {
+    public request(infoResquest: InfoRequest): Promise<any> {
         let headers = new HttpHeaders({})
         headers = headers.set("Content-Type", "application/json");
         if (infoResquest.headeroptions) {
             headers = headers.set("Authorization", infoResquest.headeroptions);
         }
-        console.log(headers);
         this.httpOptions = {
             headers: headers
         }
         switch (infoResquest.rqst) {
+            case "PUT":
+                return this.put(infoResquest);
             case "POST":
                 return this.post(infoResquest);
             case "GET":
@@ -41,7 +39,7 @@ export class RequestService extends LinkService {
 
     private get(infoResquest: InfoRequest): Promise<any> {
         return this.httpClient
-            .get(super.moutUrl(infoResquest), this.httpOptions)
+            .get(super.startMountUrl(infoResquest), this.httpOptions)
             .timeout(infoResquest.timeout)
             .toPromise()
             .then(resposta => {
@@ -51,9 +49,21 @@ export class RequestService extends LinkService {
     }
 
     private post(infoResquest: InfoRequest): Promise<any> {
-        console.log(this.moutUrl(infoResquest));
+        console.log(this.startMountUrl(infoResquest));
         return this.httpClient
-            .post(this.moutUrl(infoResquest), JSON.stringify(infoResquest._data), this.httpOptions)
+            .post(this.startMountUrl(infoResquest), JSON.stringify(infoResquest._data), this.httpOptions)
+            .timeout(infoResquest.timeout)
+            .toPromise()
+            .then(resposta => {
+                return resposta
+            })
+            .catch(super.handleError);
+    }
+
+    private put(infoResquest: InfoRequest): Promise<any> {
+        console.log(this.startMountUrl(infoResquest));
+        return this.httpClient
+            .put(this.startMountUrl(infoResquest), JSON.stringify(infoResquest._data), this.httpOptions)
             .timeout(infoResquest.timeout)
             .toPromise()
             .then(resposta => {
@@ -64,7 +74,7 @@ export class RequestService extends LinkService {
 
     private delete(infoResquest: InfoRequest): Promise<any> {
         return this.httpClient
-            .delete(super.moutUrl(infoResquest), this.httpOptions)
+            .delete(super.startMountUrl(infoResquest), this.httpOptions)
             .timeout(infoResquest.timeout)
             .toPromise()
             .then(resposta => {
@@ -72,11 +82,5 @@ export class RequestService extends LinkService {
             })
             .catch(super.handleError);
     }
-
-    private setEnvironment(environment: Environment) {
-        this.environment = environment;
-    }
-
-
 
 }

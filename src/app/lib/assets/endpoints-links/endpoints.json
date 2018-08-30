@@ -1,0 +1,36 @@
+{
+    "endpoints": [
+        {
+            "nome": "customer",
+            "pathName": "customerAPI/"
+        },
+        {
+            "nome": "fulltest",
+            "pathName": "fulltestAPI/"
+        },
+        {
+            "nome": "stealer",
+            "pathName": "stealerAPI/"
+        },
+        {
+            "nome": "auth",
+            "pathName": "authAPI/"
+        },
+        {
+            "nome": "dms",
+            "pathName": "dmsAPI/"
+        },
+        {
+            "nome": "acs",
+            "pathName": "acs/"
+        },
+        {
+            "nome": "notification",
+            "pathName": "notification/"
+        },
+        {
+            "nome": "app",
+            "pathName": "Queue?/"
+        }
+    ]
+}
