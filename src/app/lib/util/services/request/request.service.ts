@@ -49,7 +49,6 @@ export class RequestService extends LinkService {
     }
 
     private post(infoResquest: InfoRequest): Promise<any> {
-        console.log(this.startMountUrl(infoResquest));
         return this.httpClient
             .post(this.startMountUrl(infoResquest), JSON.stringify(infoResquest._data), this.httpOptions)
             .timeout(infoResquest.timeout)
@@ -61,7 +60,6 @@ export class RequestService extends LinkService {
     }
 
     private put(infoResquest: InfoRequest): Promise<any> {
-        console.log(this.startMountUrl(infoResquest));
         return this.httpClient
             .put(this.startMountUrl(infoResquest), JSON.stringify(infoResquest._data), this.httpOptions)
             .timeout(infoResquest.timeout)

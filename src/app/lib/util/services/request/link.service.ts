@@ -14,10 +14,10 @@ export class LinkService extends ExceptionService {
         super();
     }
 
-    public startMountUrl(infoResquest: InfoRequest) {
+    public startMountUrl(infoResquest: InfoRequest): string {
         // Valida se request é alguma URL não mapeada ou especifica.
         if (infoResquest.isotherurl) {
-            this.isOtherUrl(infoResquest);
+            return this.isOtherUrl(infoResquest);
         } else {
             return this.mountUrlIp(infoResquest);
         }
